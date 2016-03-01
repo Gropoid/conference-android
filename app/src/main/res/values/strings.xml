@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Conference</string>
+
+    <string name="nav_my_schedule">My schedule</string>
+    <string name="nav_explore">Explore</string>
+    <string name="nav_speakers">Speakers</string>
+    <string name="nav_settings">Settings</string>
 </resources>

@@ -1,8 +1,16 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary">#6a205f</item>
+        <item name="colorPrimaryDark">#5f1c55</item>
+        <item name="colorAccent">#f69538</item>
+        <item name="navigationDrawerLogo">@drawable/logo</item>
+    </style>
+
+    <style name="AppTheme.Navigation" parent="AppTheme">
+
     </style>
 
 </resources>

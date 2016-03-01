@@ -1,0 +1,18 @@
+[
+  {
+    "id": "lunch_1",
+    "title": "Lunch",
+    "subtitle": "Cafe, Level 1",
+    "type": "BREAK",
+    "start": "2014-06-25T18:30:00.000Z",
+    "end": "2014-06-25T20:00:00.000Z"
+  },
+  {
+    "id": "slot_1",
+    "title": "",
+    "type": "FREE",
+    "subtitle": "",
+    "start": "2014-06-25T18:00:00.000Z",
+    "end": "2014-06-25T19:00:00.000Z"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "name": "data-server",
+  "description": "Data Server",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "body-parser": "1.5.2",
+    "express": "4.10.4",
+    "lodash": "^3.9.3",
+    "promise": "^7.0.4"
+    "bluebird": "^3.0.5"
+  }
+}

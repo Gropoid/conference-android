@@ -1,0 +1,23 @@
+[
+  {
+    "id": "SESSION123",
+    "title": "Web Components in Action",
+    "description": "Web components are cool.",
+    "tags": [
+      "TYPE_SESSION",
+      "TOPIC_ANDROID",
+      "TOPIC_CHROME",
+      "THEME_DEVELOP",
+      "THEME_DESIGN"
+    ],
+    "mainTag": "TOPIC_ANDROID",
+    "startTimestamp": "2014-06-25T22:10:00Z",
+    "endTimestamp": "2014-06-25T22:55:00Z",
+    "photoUrl": "https://...../photo.jpg",
+    "speakers": [
+      "SPEAKER123",
+      "SPEAKER456"
+    ],
+    "room": "ROOM123"
+  }
+]
