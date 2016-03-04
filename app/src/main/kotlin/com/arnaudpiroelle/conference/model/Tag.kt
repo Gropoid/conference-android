@@ -1,9 +1,12 @@
 package com.arnaudpiroelle.conference.model
 
-class Tag {
+data class Tag(var id: String? = null, var name: String? = null, var type: String? = null) {
 
-    var id: String? = null
-    var type: String? = null
-    var name: String? = null
+    companion object {
+        const val TABLE_NAME: String = "tags"
 
+        const val COL_ID: String = "id";
+        const val COL_NAME: String = "name";
+        const val COL_TYPE: String = "type";
+    }
 }

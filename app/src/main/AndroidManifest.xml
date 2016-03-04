@@ -1,6 +1,8 @@
 <manifest package="com.arnaudpiroelle.conference"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".ConferenceApplication"
         android:allowBackup="true"
@@ -16,6 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <service android:name=".services.SyncService"/>
 
     </application>
 

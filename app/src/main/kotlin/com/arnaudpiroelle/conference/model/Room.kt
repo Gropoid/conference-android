@@ -1,7 +1,11 @@
 package com.arnaudpiroelle.conference.model
 
-class Room {
+data class Room(var id: String? = null, var name: String? = null) {
 
-    var id: String? = null
-    var name: String? = null
+    companion object {
+        const val TABLE_NAME: String = "rooms"
+
+        const val COL_ID: String = "_id";
+        const val COL_NAME: String = "name";
+    }
 }
