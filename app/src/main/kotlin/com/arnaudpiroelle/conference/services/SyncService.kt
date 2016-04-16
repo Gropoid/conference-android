@@ -5,6 +5,7 @@ import android.content.Intent
 import com.arnaudpiroelle.conference.ConferenceApplication.Companion.GRAPH
 import com.arnaudpiroelle.conference.core.api.ConferenceApiService
 import com.arnaudpiroelle.conference.core.database.dao.*
+import com.squareup.sqlbrite.BriteDatabase
 import rx.Observable
 import timber.log.Timber
 import javax.inject.Inject
@@ -14,6 +15,7 @@ class SyncService : IntentService("SyncService") {
 
     @Inject lateinit var conferenceApiService: ConferenceApiService
 
+    @Inject lateinit var db: BriteDatabase
     @Inject lateinit var blockDao: BlockDao
     @Inject lateinit var roomDao: RoomDao
     @Inject lateinit var sessionDao: SessionDao
@@ -41,10 +43,12 @@ class SyncService : IntentService("SyncService") {
 
         conferenceApiService.loadBlocks()
                 .flatMap { Observable.from(it) }
-                .forEach {
+                .forEach ({
                     Timber.d("$it")
                     blockDao.addOrUpdate(it)
-                }
+                }, {
+                    Timber.e("Error on adding block", it)
+                })
     }
 
     private fun fillRooms() {
@@ -52,10 +56,12 @@ class SyncService : IntentService("SyncService") {
 
         conferenceApiService.loadRooms()
                 .flatMap { Observable.from(it) }
-                .forEach {
+                .forEach ({
                     Timber.d("$it")
                     roomDao.addOrUpdate(it)
-                }
+                }, {
+                    Timber.e("Error on adding room", it)
+                })
     }
 
     private fun fillTags() {
@@ -63,21 +69,24 @@ class SyncService : IntentService("SyncService") {
 
         conferenceApiService.loadTags()
                 .flatMap { Observable.from(it) }
-                .forEach {
+                .forEach ({
                     Timber.d("$it")
                     tagDao.addOrUpdate(it)
-                }
+                }, {
+                    Timber.e("Error on adding tag", it)
+                })
     }
 
     private fun fillSpeakers() {
         Timber.i("Update speakers informations")
 
         conferenceApiService.loadSpeakers()
-                .flatMap { Observable.from(it) }
-                .forEach {
+                .forEach ({
                     Timber.d("$it")
                     speakerDao.addOrUpdate(it)
-                }
+                }, {
+                    Timber.e("Error on adding speaker", it)
+                })
     }
 
     private fun fillSessions() {
@@ -85,10 +94,12 @@ class SyncService : IntentService("SyncService") {
 
         conferenceApiService.loadSessions()
                 .flatMap { Observable.from(it) }
-                .forEach {
+                .forEach ({
                     Timber.d("$it")
                     sessionDao.addOrUpdate(it)
-                }
+                }, {
+                    Timber.e("Error on adding session", it)
+                })
     }
 
     private fun fillVideos() {
@@ -96,9 +107,11 @@ class SyncService : IntentService("SyncService") {
 
         conferenceApiService.loadVideos()
                 .flatMap { Observable.from(it) }
-                .forEach {
+                .forEach({
                     Timber.d("$it")
                     videoDao.addOrUpdate(it)
-                }
+                }, {
+                    Timber.e("Error on adding video", it)
+                })
     }
 }

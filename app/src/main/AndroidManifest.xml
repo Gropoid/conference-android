@@ -11,12 +11,39 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ui.explorer.ExplorerActivity"
+            android:name=".ui.navigation.NavigationActivity"
             android:theme="@style/AppTheme.Navigation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.speakers.details.SpeakerDetailsActivity"
+            android:parentActivityName=".ui.navigation.NavigationActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.navigation.NavigationActivity"/>
+        </activity>
+
+        <activity
+            android:name=".ui.sessions.listing.SessionListingActivity"
+            android:parentActivityName=".ui.navigation.NavigationActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.navigation.NavigationActivity"/>
+        </activity>
+
+        <activity
+            android:name=".ui.sessions.details.SessionDetailsActivity"
+            android:parentActivityName=".ui.navigation.NavigationActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.navigation.NavigationActivity"/>
         </activity>
 
         <service android:name=".services.SyncService"/>

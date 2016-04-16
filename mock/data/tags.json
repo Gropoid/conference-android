@@ -1,17 +1,67 @@
 [
   {
-    "id": "TOPIC_ANDROID",
-    "type": "TOPIC",
-    "name": "Android"
-  },
-  {
-    "id": "THEME_DEVELOP",
+    "id": "THEME_AGILE",
     "type": "THEME",
-    "name": "Distribute"
+    "name": "Agile"
   },
   {
-    "id": "TYPE_OFFICEHOURS",
-    "type": "TYPE",
-    "name": "Office Hours"
+    "id": "THEME_BACK",
+    "type": "THEME",
+    "name": "Back"
+  },
+  {
+    "id": "THEME_CLOUD",
+    "type": "THEME",
+    "name": "Cloud"
+  },
+  {
+    "id": "THEME_CRAFT",
+    "type": "THEME",
+    "name": "Craft"
+  },
+  {
+    "id": "THEME_DATA",
+    "type": "THEME",
+    "name": "Data"
+  },
+  {
+    "id": "THEME_DEVOPS",
+    "type": "THEME",
+    "name": "DevOps"
+  },
+  {
+    "id": "THEME_FRONT",
+    "type": "THEME",
+    "name": "Front"
+  },
+  {
+    "id": "THEME_IOT",
+    "type": "THEME",
+    "name": "IoT"
+  },
+  {
+    "id": "THEME_FRONT",
+    "type": "THEME",
+    "name": "Front"
+  },
+  {
+    "id": "THEME_MOBILE",
+    "type": "THEME",
+    "name": "Mobile"
+  },
+  {
+    "id": "THEME_MARKETING",
+    "type": "THEME",
+    "name": "Marketing"
+  },
+  {
+    "id": "THEME_UX",
+    "type": "THEME",
+    "name": "User Experience"
+  },
+  {
+    "id": "THEME_MANAGEMENT",
+    "type": "THEME",
+    "name": "Management"
   }
 ]

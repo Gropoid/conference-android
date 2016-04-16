@@ -29,6 +29,7 @@ class ApiModule {
 
                     try {
                         val dateString = json.asJsonPrimitive.asString
+                        dateFormater.timeZone = TimeZone.getTimeZone("UTC")
                         dateFormater.parse(dateString);
                     } catch(e: Exception) {
                         e.printStackTrace()
@@ -47,7 +48,7 @@ class ApiModule {
                 .build();
     }
 
-    @Provides @Singleton fun provideDroidconService(retrofit: Retrofit): ConferenceApiService {
+    @Provides @Singleton fun provideConferenceApiService(retrofit: Retrofit): ConferenceApiService {
         return retrofit.create(ConferenceApiService::class.java)
     }
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_speaker_github"
+        android:icon="@drawable/ic_speaker_github"
+        android:title="@string/menu_speaker_github"
+        app:showAsAction="always"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/menu_speaker_twitter"
+        android:icon="@drawable/ic_speaker_twitter"
+        android:title="@string/menu_speaker_twitter"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/menu_speaker_website"
+        android:icon="@drawable/ic_speaker_website"
+        android:title="@string/menu_speaker_website"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
+
+</menu>

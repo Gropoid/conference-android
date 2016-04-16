@@ -14,7 +14,7 @@ This project uses some modern Android libraries.
   * RecyclerView
 * [Dagger2](http://google.github.io/dagger/) - Google
 * [Kotlin](https://github.com/JetBrains/kotlin) - JetBrains
-* [OkHttp3](https://github.com/square/okhttp/tree/master/okhttp/src/main/java/okhttp3) - Square
+* [OkHttp3](https://github.com/square/okhttp/) - Square
 * [Picasso](http://square.github.io/picasso/) - Square
 * [Retrofit2](http://square.github.io/retrofit/) - Square
 * [RxJava](https://github.com/ReactiveX/RxJava) - ReactiveX
@@ -23,6 +23,7 @@ This project uses some modern Android libraries.
 * [Stetho](http://facebook.github.io/stetho/) - Facebook
 
 ## License
+```
 Copyright 2015 Arnaud Piroelle.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,4 +36,5 @@ Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
-limitations under the License.
+limitations under the License.`
+```

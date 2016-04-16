@@ -1,6 +1,6 @@
 package com.arnaudpiroelle.conference.model
 
-data class Speaker(var id: String? = null, var name: String? = null, var bio: String? = null, var company: String? = null, var thumbnailUrl: String? = null) {
+data class Speaker(var id: String? = null, var name: String? = null, var bio: String? = null, var company: String? = null, var thumbnailUrl: String? = null, var twitter: String?, var github: String?, var website: String?) {
 
     companion object {
         const val TABLE_NAME: String = "speakers"
@@ -10,6 +10,9 @@ data class Speaker(var id: String? = null, var name: String? = null, var bio: St
         const val COL_BIO: String = "bio";
         const val COL_COMPANY: String = "company";
         const val COL_THUMBNAIL: String = "thumbnailUrl";
+        const val COL_TWITTER: String = "twitter";
+        const val COL_GITHUB: String = "github";
+        const val COL_WEBSITE: String = "website";
     }
 
 }

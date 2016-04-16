@@ -1,12 +1,13 @@
-package com.arnaudpiroelle.conference.ui.explorer
+package com.arnaudpiroelle.conference.ui.navigation
 
+import android.os.Bundle
 import android.support.annotation.IdRes
 
 
-interface ExplorerContract {
+interface NavigationContract {
     interface View {
         fun checkNavigationItem(@IdRes itemId: Int)
-        fun displaySessions()
+        fun displayExplore()
         fun displaySpeakers()
         fun displayScheduler()
         fun displaySettings()
@@ -15,5 +16,7 @@ interface ExplorerContract {
 
     interface UserActionsListener {
         fun selectNavigationItem(itemId: Int)
+        fun saveInstanceState(outState: Bundle?)
+        fun restoreInstanceState(savedInstanceState: Bundle?)
     }
 }

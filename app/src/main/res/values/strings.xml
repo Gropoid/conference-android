@@ -5,4 +5,15 @@
     <string name="nav_explore">Explore</string>
     <string name="nav_speakers">Speakers</string>
     <string name="nav_settings">Settings</string>
+
+    <string name="title_speakers">Speakers</string>
+    <string name="title_explore">@string/app_name</string>
+
+    <string name="speaker_description_header">Description</string>
+    <string name="speaker_sessions_header">Sessions</string>
+    <string name="menu_speaker_twitter">Twitter</string>
+    <string name="menu_speaker_github">Github</string>
+    <string name="menu_speaker_website">Website</string>
+
+    <string name="in_progress">In progress</string>
 </resources>

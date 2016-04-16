@@ -35,7 +35,10 @@ class DatabaseOpenHelper @Inject constructor(application: Application) : SQLiteO
                 "${Speaker.COL_NAME} TEXT, " +
                 "${Speaker.COL_BIO} TEXT, " +
                 "${Speaker.COL_COMPANY} TEXT," +
-                "${Speaker.COL_THUMBNAIL} TEXT)"
+                "${Speaker.COL_THUMBNAIL} TEXT," +
+                "${Speaker.COL_TWITTER} TEXT," +
+                "${Speaker.COL_GITHUB} TEXT," +
+                "${Speaker.COL_WEBSITE} TEXT)"
 
         val CREATE_TABLE_SESSIONS = "CREATE TABLE ${Session.TABLE_NAME} (" +
                 "${Session.COL_ID} TEXT NOT NULL PRIMARY KEY, " +

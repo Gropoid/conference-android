@@ -3,6 +3,7 @@ package com.arnaudpiroelle.conference.core.database.mapper
 import android.content.ContentValues
 import android.database.Cursor
 import android.text.TextUtils
+import com.arnaudpiroelle.conference.core.database.utils.getLong
 import com.arnaudpiroelle.conference.core.database.utils.getString
 import com.arnaudpiroelle.conference.model.Session
 import com.arnaudpiroelle.conference.model.Session.Companion.COL_DESCRIPTION
@@ -23,15 +24,15 @@ object SessionMapper {
         val id = it.getString(COL_ID)
         val title = it.getString(COL_TITLE)
         val description = it.getString(COL_DESCRIPTION)
-        val tags = it.getString(COL_TAGS).split(",")
+        val tags = it.getString(COL_TAGS)?.split(",")
         val mainTag = it.getString(COL_MAIN_TAG)
-        val start = it.getString(COL_START)
-        val end = it.getString(COL_END)
+        val start = it.getLong(COL_START)
+        val end = it.getLong(COL_END)
         val photoUrl = it.getString(COL_PHOTO_URL)
-        val speakers = it.getString(COL_SPEAKERS).split(",")
+        val speakers = it.getString(COL_SPEAKERS)?.split(",")
         val room = it.getString(COL_ROOM)
 
-        Session(id, title, description, tags, mainTag, Date(start), Date(end), photoUrl, speakers, room)
+        Session(id, title, description, tags, mainTag, Date(start!!), Date(end!!), photoUrl, speakers, room)
     }
 
     fun toContentValues(session: Session): ContentValues {
