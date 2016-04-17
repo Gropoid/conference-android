@@ -58,11 +58,11 @@ android {
 
     productFlavors {
         local {
-            buildConfigField 'String', 'API_ENDPOINT', "\"http://192.168.64.1:8989\""
+            buildConfigField 'String', 'API_ENDPOINT', "\"http://192.168.64.1:8989/\""
         }
 
         prod {
-            buildConfigField 'String', 'API_ENDPOINT', "\"http://arnaudpiroelle.github.io/conference-android/api\""
+            buildConfigField 'String', 'API_ENDPOINT', "\"http://arnaudpiroelle.github.io/conference-android/api/\""
         }
     }
 

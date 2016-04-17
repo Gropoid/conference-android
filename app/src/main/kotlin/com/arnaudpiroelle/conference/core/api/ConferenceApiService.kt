@@ -6,21 +6,21 @@ import rx.Observable
 
 
 interface ConferenceApiService {
-    @GET("/blocks")
+    @GET("blocks.json")
     fun loadBlocks(): Observable<List<Block>>
 
-    @GET("/rooms")
+    @GET("rooms.json")
     fun loadRooms(): Observable<List<Room>>
 
-    @GET("/tags")
+    @GET("tags.json")
     fun loadTags(): Observable<List<Tag>>
 
-    @GET("/speakers")
+    @GET("speakers.json")
     fun loadSpeakers(): Observable<List<Speaker>>
 
-    @GET("/sessions")
+    @GET("sessions.json")
     fun loadSessions(): Observable<List<Session>>
 
-    @GET("/videos")
+    @GET("videos.json")
     fun loadVideos(): Observable<List<Video>>
 }

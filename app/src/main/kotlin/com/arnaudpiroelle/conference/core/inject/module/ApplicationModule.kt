@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
 import java.io.File
 import javax.inject.Singleton
@@ -20,7 +21,12 @@ class ApplicationModule(val application: Application) {
     @Provides @Singleton fun provideOkHttpClient(application: Application): OkHttpClient {
         var cacheDir = File(application.cacheDir, "http");
         var cache = Cache(cacheDir, 31457280);
-        return OkHttpClient.Builder().cache(cache).build();
+
+        var logging = HttpLoggingInterceptor({
+            Timber.tag("OkHttp").d(it);
+        }).setLevel(HttpLoggingInterceptor.Level.BASIC);
+
+        return OkHttpClient.Builder().addInterceptor(logging).cache(cache).build();
     }
 
     @Provides @Singleton fun providePicasso(application: Application, okHttpClient: OkHttpClient): Picasso {
