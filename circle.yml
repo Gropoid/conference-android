@@ -10,3 +10,11 @@ dependencies:
 test:
   override:
     - ./gradlew test
+
+deployment:
+  beta:
+    branch: master
+    commands:
+        - ./gradlew assembleProdDebug -PdisablePreDex
+        - cp -r app/build/outputs/apk/app-prod-debug.apk $CIRCLE_ARTIFACTS
+        - curl -F "file=@app/build/outputs/apk/app-prod-debug.apk" -F "token=$DEPLOYGATE_API_KEY" https://deploygate.com/api/users/ArnaudPiroelle/apps

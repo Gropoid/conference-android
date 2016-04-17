@@ -1,5 +1,5 @@
 #  Conferences Application 
-[![Circle CI](https://circleci.com/gh/ArnaudPiroelle/conference-android/tree/master.svg?style=svg)](https://circleci.com/gh/ArnaudPiroelle/conference-android/tree/master)
+[![Circle CI](https://circleci.com/gh/ArnaudPiroelle/conference-android/tree/master.svg?style=svg)](https://circleci.com/gh/ArnaudPiroelle/conference-android/tree/master)  [<img src="https://dply.me/dmatzv/button/small" alt="Download to device">](https://dply.me/dmatzv#install)
 
 ## Features
 

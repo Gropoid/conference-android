@@ -20,6 +20,10 @@ buildscript {
     }
 }
 
+def getBuildNumber() {
+    return System.getenv("CIRCLE_BUILD_NUM") as Integer ?: 1
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -28,8 +32,8 @@ android {
         applicationId "com.arnaudpiroelle.conference"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode getBuildNumber()
+        versionName "1.0.0"
 
         buildConfigField("String", "CONFERENCE_TIMEZONE", "\"Europe/Paris\"")
     }
@@ -58,7 +62,7 @@ android {
         }
 
         prod {
-            buildConfigField 'String', 'API_ENDPOINT', "\"http://192.168.64.1:8989\""
+            buildConfigField 'String', 'API_ENDPOINT', "\"http://arnaudpiroelle.github.io/conference-android/api\""
         }
     }
 
