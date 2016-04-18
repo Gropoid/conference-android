@@ -36,6 +36,10 @@ android {
         versionName "1.0.0"
 
         buildConfigField("String", "CONFERENCE_TIMEZONE", "\"Europe/Paris\"")
+        buildConfigField("String", "CONFERENCE_NAME", "\"Build the future\"")
+        buildConfigField("String", "CONFERENCE_START", "\"2015-11-04T08:00:00.000Z\"")
+        buildConfigField("String", "CONFERENCE_END", "\"2015-11-04T19:00:00.000Z\"")
+        buildConfigField("String", "CONFERENCE_BACKGROUND", "\"http://blog.xebia.fr/wp-content/uploads/2015/10/xebicon_background-11.png\"")
     }
     buildTypes {
         release {
@@ -54,6 +58,7 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
     }
 
     productFlavors {

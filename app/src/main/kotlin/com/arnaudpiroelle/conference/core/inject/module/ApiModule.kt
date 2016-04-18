@@ -2,6 +2,7 @@ package com.arnaudpiroelle.conference.core.inject.module
 
 import com.arnaudpiroelle.conference.BuildConfig
 import com.arnaudpiroelle.conference.core.api.ConferenceApiService
+import com.arnaudpiroelle.conference.core.utils.Dates
 import com.google.gson.*
 import dagger.Module
 import dagger.Provides
@@ -17,11 +18,6 @@ import javax.inject.Singleton
 @Module
 class ApiModule {
 
-    companion object {
-        //"2014-06-25T18:30:00.000Z"
-        val dateFormater = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    }
-
     @Provides @Singleton fun provideGson(): Gson {
         return GsonBuilder()
                 .registerTypeAdapter(Date::class.java, JsonDeserializer<Date> {
@@ -29,8 +25,7 @@ class ApiModule {
 
                     try {
                         val dateString = json.asJsonPrimitive.asString
-                        dateFormater.timeZone = TimeZone.getTimeZone("UTC")
-                        dateFormater.parse(dateString);
+                        Dates.fromUtc(dateString);
                     } catch(e: Exception) {
                         e.printStackTrace()
                         null
