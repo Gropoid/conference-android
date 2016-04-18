@@ -2,7 +2,6 @@ package com.arnaudpiroelle.conference.ui.explore.viewholder
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
@@ -15,7 +14,7 @@ import kotlinx.android.synthetic.main.item_view_session.view.*
 import kotlinx.android.synthetic.main.item_view_tag.view.*
 
 
-class TagViewHolder(context: Context, parent: ViewGroup?, val picasso: Picasso, val userActionsListener: ExploreContract.UserActionsListener) : AbstractGroupViewHolder(context, R.layout.item_view_tag, parent) {
+class TagViewHolder(val context: Context, parent: ViewGroup?, val userActionsListener: ExploreContract.UserActionsListener) : AbstractGroupViewHolder(context, R.layout.item_view_tag, parent) {
 
     private val maxSession: Int by lazy { context.resources.getInteger(R.integer.number_sessions_by_tag) }
 
@@ -44,7 +43,7 @@ class TagViewHolder(context: Context, parent: ViewGroup?, val picasso: Picasso, 
                 userActionsListener.openSessionDetails(session)
             }
 
-            picasso.load(session.photoUrl).into(sessionView.session_thumbnail)
+            Picasso.with(itemView.context).load(session.photoUrl).into(sessionView.session_thumbnail)
         }
 
     }

@@ -17,7 +17,6 @@ class SessionDetailsActivity : BaseActivity(), SessionDetailsContract.View {
 
     @Inject lateinit var sessionDao: SessionDao
     @Inject lateinit var speakerDao: SpeakerDao
-    @Inject lateinit var picasso: Picasso
 
     val sessionId: String by lazy { intent.getStringExtra(ProtocolConstants.EXTRA_SESSION_ID) }
     val userActionsListener: SessionDetailsContract.UserActionsListener  by lazy { SessionDetailsPresenter(this, sessionDao, speakerDao) }
@@ -49,7 +48,7 @@ class SessionDetailsActivity : BaseActivity(), SessionDetailsContract.View {
     override fun showSession(session: Session) {
         session_title.text = session.title
 
-        picasso.load(session.photoUrl).into(session_image)
+        Picasso.with(this).load(session.photoUrl).into(session_image)
     }
 
     override fun showSpeakers(speaker: List<Speaker>) {

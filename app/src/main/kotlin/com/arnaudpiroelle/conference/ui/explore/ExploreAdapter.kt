@@ -9,11 +9,10 @@ import com.arnaudpiroelle.conference.ui.explore.viewholder.AbstractGroupViewHold
 import com.arnaudpiroelle.conference.ui.explore.viewholder.KeynoteViewHolder
 import com.arnaudpiroelle.conference.ui.explore.viewholder.MessageViewHolder
 import com.arnaudpiroelle.conference.ui.explore.viewholder.TagViewHolder
-import com.squareup.picasso.Picasso
 import java.util.*
 
 
-class ExploreAdapter(val context: Context, val picasso: Picasso, val userActionsListener: ExploreContract.UserActionsListener) : RecyclerView.Adapter<AbstractGroupViewHolder>() {
+class ExploreAdapter(val context: Context, val userActionsListener: ExploreContract.UserActionsListener) : RecyclerView.Adapter<AbstractGroupViewHolder>() {
 
     var datas: List<Group<*>> = ArrayList()
 
@@ -24,8 +23,8 @@ class ExploreAdapter(val context: Context, val picasso: Picasso, val userActions
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AbstractGroupViewHolder? {
         when (viewType) {
             VIEW_TYPE_MESSAGE -> return MessageViewHolder(context, parent)
-            VIEW_TYPE_KEYNOTE -> return KeynoteViewHolder(context, parent, picasso, userActionsListener)
-            VIEW_TYPE_TAG -> return TagViewHolder(context, parent, picasso, userActionsListener)
+            VIEW_TYPE_KEYNOTE -> return KeynoteViewHolder(context, parent, userActionsListener)
+            VIEW_TYPE_TAG -> return TagViewHolder(context, parent, userActionsListener)
         }
 
         return null

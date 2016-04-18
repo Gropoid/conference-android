@@ -20,9 +20,8 @@ class SessionListingActivity : BaseActivity(), SessionListingContract.View {
 
     @Inject lateinit var sessionDao: SessionDao
     @Inject lateinit var tagDao: TagDao
-    @Inject lateinit var picasso: Picasso
 
-    val adapter: SessionListingAdapter by lazy { SessionListingAdapter(this, picasso, userActionsListener) }
+    val adapter: SessionListingAdapter by lazy { SessionListingAdapter(this, userActionsListener) }
     val userActionsListener: SessionListingContract.UserActionsListener by lazy { SessionListingPresenter(this, tagDao, sessionDao) }
     val tagId: String by lazy { intent.getStringExtra(ProtocolConstants.EXTRA_TAG_ID) }
 

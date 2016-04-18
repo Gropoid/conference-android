@@ -14,6 +14,9 @@ import com.arnaudpiroelle.conference.core.utils.Intents.createSessionListing
 import com.arnaudpiroelle.conference.model.Session
 import com.arnaudpiroelle.conference.model.Tag
 import com.arnaudpiroelle.conference.ui.core.BaseFragment
+import com.arnaudpiroelle.conference.ui.explore.ExploreAdapter
+import com.arnaudpiroelle.conference.ui.explore.ExploreContract
+import com.arnaudpiroelle.conference.ui.explore.ExplorePresenter
 import com.arnaudpiroelle.conference.ui.explore.model.Group
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_explore.*
@@ -22,12 +25,11 @@ import javax.inject.Inject
 
 class ExploreFragment : BaseFragment(), ExploreContract.View {
 
-    @Inject lateinit var picasso: Picasso
     @Inject lateinit var sessionDao: SessionDao
     @Inject lateinit var tagDao: TagDao
 
     val userActionsListener: ExploreContract.UserActionsListener by lazy { ExplorePresenter(this, sessionDao, tagDao) }
-    val adapter by lazy { ExploreAdapter(activity, picasso, userActionsListener) }
+    val adapter by lazy { ExploreAdapter(activity, userActionsListener) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -18,10 +18,9 @@ import javax.inject.Inject
 class SpeakersListingFragment : BaseFragment(), SpeakersListingContract.View {
 
     @Inject lateinit var speakerDao: SpeakerDao
-    @Inject lateinit var picasso: Picasso
 
     val userActionsListener: SpeakersListingContract.UserActionsListener by lazy { SpeakersListingPresenter(this, speakerDao) }
-    val adapter by lazy { SpeakersListingAdapter(activity, picasso, userActionsListener) }
+    val adapter by lazy { SpeakersListingAdapter(activity, userActionsListener) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

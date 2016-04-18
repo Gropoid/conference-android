@@ -6,16 +6,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.arnaudpiroelle.conference.R
 import com.arnaudpiroelle.conference.model.Session
-import com.squareup.picasso.Picasso
 import java.util.*
 
 
-class SessionListingAdapter(val context: Context, val picasso: Picasso, val userActionsListener: SessionListingContract.UserActionsListener) : RecyclerView.Adapter<SessionViewHolder>() {
+class SessionListingAdapter(val context: Context, val userActionsListener: SessionListingContract.UserActionsListener) : RecyclerView.Adapter<SessionViewHolder>() {
 
-    var datas : List<Session> = ArrayList()
+    var datas: List<Session> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): SessionViewHolder? {
-        return SessionViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view_session, parent, false), picasso, userActionsListener)
+        return SessionViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view_session, parent, false), context, userActionsListener)
     }
 
     override fun onBindViewHolder(holder: SessionViewHolder, position: Int) {

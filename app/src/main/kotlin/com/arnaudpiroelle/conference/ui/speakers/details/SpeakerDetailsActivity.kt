@@ -1,10 +1,7 @@
 package com.arnaudpiroelle.conference.ui.speakers.details
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.customtabs.CustomTabsIntent
-import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
@@ -24,7 +21,6 @@ import javax.inject.Inject
 class SpeakerDetailsActivity : BaseActivity(), SpeakerDetailsContract.View {
 
     @Inject lateinit var speakerDao: SpeakerDao
-    @Inject lateinit var picasso: Picasso
 
     val userActionsListener: SpeakerDetailsContract.UserActionsListener by lazy { SpeakerDetailsPresenter(this, speakerDao) }
     val speakerId: String by lazy { intent.getStringExtra(ProtocolConstants.EXTRA_SPEAKER_ID) }
@@ -95,7 +91,7 @@ class SpeakerDetailsActivity : BaseActivity(), SpeakerDetailsContract.View {
         speaker_company.text = speaker.company
         speaker_description.text = speaker.bio
 
-        picasso.load(speaker.thumbnailUrl).into(speaker_image)
+        Picasso.with(this).load(speaker.thumbnailUrl).into(speaker_image)
     }
 
     override fun refreshMenu(speaker: Speaker) {

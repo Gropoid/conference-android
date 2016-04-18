@@ -11,13 +11,13 @@ import kotlinx.android.synthetic.main.item_view_keynote.view.*
 import java.util.*
 
 
-class KeynoteViewHolder(val context: Context, parent: ViewGroup?, val picasso: Picasso, val userActionsListener: ExploreContract.UserActionsListener) : AbstractGroupViewHolder(context, R.layout.item_view_keynote, parent) {
+class KeynoteViewHolder(val context: Context, parent: ViewGroup?, val userActionsListener: ExploreContract.UserActionsListener) : AbstractGroupViewHolder(context, R.layout.item_view_keynote, parent) {
     override fun bindView(data: Any?) {
         val keynote = data as Session
         itemView.title.text = keynote.title
         itemView.description.text = getPeriode(keynote)
 
-        picasso.load(keynote.photoUrl).into(itemView.image)
+        Picasso.with(itemView.context).load(keynote.photoUrl).into(itemView.image)
 
         itemView.keynote_container.setOnClickListener {
             userActionsListener.openSessionDetails(keynote)

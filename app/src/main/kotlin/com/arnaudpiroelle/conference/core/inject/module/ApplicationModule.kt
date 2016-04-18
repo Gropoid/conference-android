@@ -30,11 +30,15 @@ class ApplicationModule(val application: Application) {
     }
 
     @Provides @Singleton fun providePicasso(application: Application, okHttpClient: OkHttpClient): Picasso {
-        return Picasso.Builder(application)
+        val picasso = Picasso.Builder(application)
                 .downloader(OkHttp3Downloader(okHttpClient))
                 .listener { picasso, uri, exception ->
                     Timber.e(exception, "Failed to load image: %s", uri)
                 }
-                .build();
+                .build()
+
+        Picasso.setSingletonInstance(picasso)
+
+        return picasso;
     }
 }
