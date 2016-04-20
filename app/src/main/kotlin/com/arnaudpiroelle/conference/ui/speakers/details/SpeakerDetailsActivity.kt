@@ -91,7 +91,9 @@ class SpeakerDetailsActivity : BaseActivity(), SpeakerDetailsContract.View {
         speaker_company.text = speaker.company
         speaker_description.text = speaker.bio
 
-        Picasso.with(this).load(speaker.thumbnailUrl).into(speaker_image)
+        if (!TextUtils.isEmpty(speaker.thumbnailUrl)) {
+            Picasso.with(this).load(speaker.thumbnailUrl).into(speaker_image)
+        }
     }
 
     override fun refreshMenu(speaker: Speaker) {
