@@ -15,18 +15,6 @@ class SpeakerDao @Inject constructor(val db: BriteDatabase) {
         db.insert(TABLE_NAME, toContentValues(speaker), CONFLICT_REPLACE)
     }
 
-    fun addOrUpdate(speakers: List<Speaker>) {
-        var transaction = db.newTransaction();
-
-        try {
-            speakers.forEach { addOrUpdate(it) }
-
-            transaction.markSuccessful();
-        } finally {
-            transaction.end()
-        }
-    }
-
     fun getSpeakers(): Observable<List<Speaker>> {
         return db.createQuery(Speaker.TABLE_NAME, "SELECT * FROM ${Speaker.TABLE_NAME}")
                 .mapToList {
