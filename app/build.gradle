@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 buildscript {
     ext {
         kotlinVersion = '1.0.1-2'
-        supportVersion = '23.1.1'
+        supportVersion = '23.2.1'
         retrofitVersion = '2.0.2'
         okhttpVersion = '3.1.0'
         daggerVersion = '2.0.2'
@@ -81,6 +81,7 @@ dependencies {
     compile "com.android.support:customtabs:$supportVersion"
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 
     compile 'com.jakewharton.timber:timber:4.1.1'
 

@@ -74,22 +74,67 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:orientation="vertical">
 
         <TextView
-            style="@style/AppTheme.Speaker.Details.Header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/speaker_description_header"/>
-
-        <TextView
+            android:layout_marginTop="8dp"
             android:id="@+id/session_description"
+            style="@style/Body1Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="72dp"/>
 
+        <HorizontalScrollView
+            android:id="@+id/session_tags_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginStart="72dp"
+            android:fadingEdgeLength="16dp"
+            android:requiresFadingEdge="horizontal"
+            android:scrollbars="none"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/session_tags"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:orientation="horizontal"/>
+
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:id="@+id/session_speakers_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/session_speakers_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="72dp"
+                android:layout_marginStart="72dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp"
+                android:text="@string/session_speakers"
+                android:textAppearance="@style/TextAppearance.Body2"
+                android:textColor="@color/body_text_2"/>
+
+            <LinearLayout
+                android:id="@+id/session_speakers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </com.arnaudpiroelle.conference.ui.core.widget.ParallaxScrollView>
