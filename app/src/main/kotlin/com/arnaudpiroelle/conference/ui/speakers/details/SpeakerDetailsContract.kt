@@ -1,5 +1,6 @@
 package com.arnaudpiroelle.conference.ui.speakers.details
 
+import com.arnaudpiroelle.conference.model.Session
 import com.arnaudpiroelle.conference.model.Speaker
 
 interface SpeakerDetailsContract {
@@ -10,6 +11,9 @@ interface SpeakerDetailsContract {
         fun displayGithub()
         fun displayTwitter()
         fun displayWebsite()
+
+        fun cleanSessions()
+        fun addSession(session: Session)
     }
 
     interface UserActionsListener {

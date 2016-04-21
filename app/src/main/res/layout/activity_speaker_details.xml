@@ -106,15 +106,36 @@
             android:id="@+id/speaker_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             tools:text="Arnaud is an Android Developer and Craftman"/>
 
-        <TextView
-            style="@style/AppTheme.Speaker.Details.Header"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/speaker_sessions_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/speaker_sessions_header"/>
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/speaker_sessions_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:text="@string/speaker_sessions"
+                android:textAppearance="@style/TextAppearance.Body2"
+                android:textColor="@color/body_text_2"/>
+
+            <LinearLayout
+                android:id="@+id/speaker_sessions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </com.arnaudpiroelle.conference.ui.core.widget.ParallaxScrollView>

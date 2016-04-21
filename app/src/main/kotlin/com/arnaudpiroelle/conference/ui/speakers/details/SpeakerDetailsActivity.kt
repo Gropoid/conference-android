@@ -3,26 +3,32 @@ package com.arnaudpiroelle.conference.ui.speakers.details
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.arnaudpiroelle.conference.ConferenceApplication.Companion.GRAPH
 import com.arnaudpiroelle.conference.R
+import com.arnaudpiroelle.conference.core.database.dao.SessionDao
 import com.arnaudpiroelle.conference.core.database.dao.SpeakerDao
 import com.arnaudpiroelle.conference.core.utils.Intents
 import com.arnaudpiroelle.conference.core.utils.ProtocolConstants
+import com.arnaudpiroelle.conference.model.Session
 import com.arnaudpiroelle.conference.model.Speaker
 import com.arnaudpiroelle.conference.ui.core.BaseActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_speaker_details.*
+import kotlinx.android.synthetic.main.item_view_session.*
+import kotlinx.android.synthetic.main.item_view_session.view.*
 import javax.inject.Inject
 
 
 class SpeakerDetailsActivity : BaseActivity(), SpeakerDetailsContract.View {
 
     @Inject lateinit var speakerDao: SpeakerDao
+    @Inject lateinit var sessionDao: SessionDao
 
-    val userActionsListener: SpeakerDetailsContract.UserActionsListener by lazy { SpeakerDetailsPresenter(this, speakerDao) }
+    val userActionsListener: SpeakerDetailsContract.UserActionsListener by lazy { SpeakerDetailsPresenter(this, speakerDao, sessionDao) }
     val speakerId: String by lazy { intent.getStringExtra(ProtocolConstants.EXTRA_SPEAKER_ID) }
 
     var speaker: Speaker? = null
@@ -116,5 +122,23 @@ class SpeakerDetailsActivity : BaseActivity(), SpeakerDetailsContract.View {
         val intent = Intents.createExternalLink(this)
         intent.launchUrl(this, Uri.parse(speaker!!.website));
     }
+
+    override fun cleanSessions() {
+        speaker_sessions.removeAllViews()
+    }
+
+    override fun addSession(session: Session) {
+        val sessionView = LayoutInflater.from(this).inflate(R.layout.item_view_session, speaker_sessions, false)
+
+        sessionView.session_title.text = session.title
+        sessionView.session_description.text = session.description
+
+        if(!TextUtils.isEmpty(session.photoUrl)){
+            Picasso.with(this).load(session.photoUrl).into(sessionView.session_thumbnail)
+        }
+
+        speaker_sessions.addView(sessionView)
+    }
+
 
 }

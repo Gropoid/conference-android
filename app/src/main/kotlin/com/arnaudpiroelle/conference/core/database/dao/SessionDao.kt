@@ -29,6 +29,13 @@ class SessionDao @Inject constructor(val db: BriteDatabase) {
                 }
     }
 
+    fun getSessionsBySpeaker(speaker: String): Observable<List<Session>> {
+        return db.createQuery(Session.TABLE_NAME, "SELECT * FROM ${Session.TABLE_NAME} WHERE ${Session.COL_SPEAKERS} LIKE ?", "%$speaker%")
+                .mapToList {
+                    SessionMapper.toSession(it)
+                }
+    }
+
     fun getSessions(): Observable<List<Session>> {
         return db.createQuery(Session.TABLE_NAME, "SELECT * FROM ${Session.TABLE_NAME} WHERE ${Session.COL_MAIN_TAG} NOT LIKE ?", "FLAG_KEYNOTE")
                 .mapToList {
