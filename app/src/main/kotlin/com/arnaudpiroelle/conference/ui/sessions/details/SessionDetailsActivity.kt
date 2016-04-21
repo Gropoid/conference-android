@@ -79,7 +79,11 @@ class SessionDetailsActivity : BaseActivity(), SessionDetailsContract.View {
         speakerView.speaker_company.text = speaker.company
 
         if (!TextUtils.isEmpty(speaker.thumbnailUrl)) {
-            Picasso.with(this).load(speaker.thumbnailUrl).into(speakerView.speaker_image)
+            Picasso.with(this)
+                    .load(speaker.thumbnailUrl)
+                    .placeholder(R.drawable.placeholder_speaker_rounded)
+                    .error(R.drawable.placeholder_speaker_rounded)
+                    .into(speakerView.speaker_image)
         }
 
         speakerView.setOnClickListener {
