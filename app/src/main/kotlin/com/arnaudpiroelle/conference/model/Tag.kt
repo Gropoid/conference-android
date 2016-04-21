@@ -1,6 +1,6 @@
 package com.arnaudpiroelle.conference.model
 
-data class Tag(var id: String? = null, var name: String? = null, var type: String? = null) {
+data class Tag(val id: String? = null, val name: String? = null, val type: String? = null) {
 
     companion object {
         const val TABLE_NAME: String = "tags"

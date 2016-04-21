@@ -19,7 +19,7 @@ class SpeakerDetailsPresenter(val view: SpeakerDetailsContract.View, val speaker
     override fun subscribe(speakerId: String) {
         subscription = Observable.combineLatest(speakerDao.getSpeaker(speakerId), sessionDao.getSessionsBySpeaker(speakerId), {
             speaker, sessions ->
-            SpeakerData(speaker, sessions.filter { it.speakers!!.contains(speakerId) })
+            SpeakerData(speaker, sessions)
         })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

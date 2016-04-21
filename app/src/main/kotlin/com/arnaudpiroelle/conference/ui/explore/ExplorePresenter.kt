@@ -23,10 +23,10 @@ class ExplorePresenter(val view: ExploreContract.View, val sessionDao: SessionDa
 
     override fun subscribe() {
 
-        subscription = combineLatest(loadKeynote(), loadTags(), loadSessions(), { keynote, tags, sessions ->
+        subscription = combineLatest(loadKeynote(), loadTags(), loadSessionsTags(), { keynote, tags, tagsSessions ->
             val list = ArrayList<Group<*>>()
             list.addAll(keynote.map { Group(it, KEYNOTE) })
-            list.addAll(tags.map { tag -> Group(TagWithSessions(tag, sessions.filter { session -> session.tags!!.contains(tag.id) }), TAG) }.filter { !it.data.sessions.isEmpty() })
+            list.addAll(tags.map { tag -> Group(TagWithSessions(tag, tagsSessions.getOrElse(tag.id!!, { listOf() })), TAG) }.filter { !it.data.sessions.isEmpty() })
 
             list
         })
@@ -51,6 +51,10 @@ class ExplorePresenter(val view: ExploreContract.View, val sessionDao: SessionDa
 
     private fun loadTags(): Observable<List<Tag>> {
         return tagDao.getTags()
+    }
+
+    private fun loadSessionsTags(): Observable<Map<String, List<Session>>> {
+        return tagDao.getTagsSessions()
     }
 
     override fun openSessionDetails(session: Session) {

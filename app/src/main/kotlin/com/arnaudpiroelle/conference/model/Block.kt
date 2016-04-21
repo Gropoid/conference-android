@@ -2,7 +2,7 @@ package com.arnaudpiroelle.conference.model
 
 import java.util.*
 
-data class Block(var id: String? = null, var title: String? = null, var subtitle: String? = null, var type: String? = null, var start: Date? = null, var end: Date? = null) {
+data class Block(val id: String? = null, val title: String? = null, val subtitle: String? = null, val type: String? = null, val start: Date? = null, val end: Date? = null) {
 
     companion object {
         const val TABLE_NAME = "blocks"

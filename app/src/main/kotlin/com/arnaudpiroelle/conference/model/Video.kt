@@ -1,6 +1,6 @@
 package com.arnaudpiroelle.conference.model
 
-data class Video(var id: String? = null, var title: String? = null, var description: String? = null, var thumbnailUrl: String? = null, var topic: String? = null, var speakers: String? = null) {
+data class Video(val id: String? = null, val title: String? = null, val description: String? = null, val thumbnailUrl: String? = null, val topic: String? = null, val speakers: String? = null) {
 
     companion object {
         const val TABLE_NAME: String = "videos"

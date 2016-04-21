@@ -4,8 +4,11 @@ import android.app.IntentService
 import android.content.Intent
 import com.arnaudpiroelle.conference.ConferenceApplication.Companion.GRAPH
 import com.arnaudpiroelle.conference.core.api.ConferenceApiService
+import com.arnaudpiroelle.conference.core.api.response.*
 import com.arnaudpiroelle.conference.core.database.dao.*
 import com.arnaudpiroelle.conference.model.*
+import com.arnaudpiroelle.conference.model.rel.SessionSpeaker
+import com.arnaudpiroelle.conference.model.rel.SessionTag
 import com.squareup.sqlbrite.BriteDatabase
 import rx.Observable
 import rx.schedulers.Schedulers
@@ -34,12 +37,12 @@ class SyncService : IntentService("SyncService") {
     override fun onHandleIntent(intent: Intent) {
 
         Observable.zip(
-                fillBlocks(),
-                fillRooms(),
-                fillTags(),
-                fillSpeakers(),
-                fillSessions(),
-                fillVideos(),
+                conferenceApiService.loadBlocks(),
+                conferenceApiService.loadRooms(),
+                conferenceApiService.loadTags(),
+                conferenceApiService.loadSpeakers(),
+                conferenceApiService.loadSessions(),
+                conferenceApiService.loadVideos(),
                 {
                     blocks, rooms, tags, speakers, sessions, videos ->
 
@@ -50,30 +53,12 @@ class SyncService : IntentService("SyncService") {
 
                     val newTransaction = db.newTransaction()
 
-                    it.blocks.forEach {
-                        blockDao.addOrUpdate(it)
-                    }
-
-                    it.rooms.forEach {
-                        roomDao.addOrUpdate(it)
-                    }
-
-                    it.tags.forEach {
-                        tagDao.addOrUpdate(it)
-                    }
-
-                    it.speakers.forEach {
-                        speakerDao.addOrUpdate(it)
-                    }
-
-                    it.sessions.forEach {
-                        sessionDao.addOrUpdate(it)
-                    }
-
-                    it.videos.forEach {
-                        videoDao.addOrUpdate(it)
-                    }
-
+                    fillBlocks(it)
+                    fillRooms(it)
+                    fillSpeakers(it)
+                    fillTags(it)
+                    fillVideos(it)
+                    fillSessions(it)
 
                     newTransaction.markSuccessful()
                     newTransaction.end()
@@ -81,42 +66,68 @@ class SyncService : IntentService("SyncService") {
 
     }
 
-    private fun fillBlocks(): Observable<List<Block>> {
+    private fun fillBlocks(syncResult: SyncResult) {
         Timber.i("Update blocks informations")
 
-        return conferenceApiService.loadBlocks()
+        syncResult.blocks.forEach {
+            blockDao.addOrUpdate(Block(it.id, it.title, it.subtitle, it.type, it.start, it.end))
+        }
     }
 
-    private fun fillRooms(): Observable<List<Room>> {
+    private fun fillRooms(syncResult: SyncResult) {
         Timber.i("Update rooms informations")
 
-        return conferenceApiService.loadRooms()
+        syncResult.rooms.forEach {
+            roomDao.addOrUpdate(Room(it.id, it.name))
+        }
     }
 
-    private fun fillTags(): Observable<List<Tag>> {
+    private fun fillTags(syncResult: SyncResult) {
         Timber.i("Update tags informations")
 
-        return conferenceApiService.loadTags()
+        syncResult.tags.forEach {
+            tagDao.addOrUpdate(Tag(it.id, it.name, it.type))
+        }
     }
 
-    private fun fillSpeakers(): Observable<List<Speaker>> {
+    private fun fillSpeakers(syncResult: SyncResult) {
         Timber.i("Update speakers informations")
 
-        return conferenceApiService.loadSpeakers()
+        syncResult.speakers.forEach {
+            speakerDao.addOrUpdate(Speaker(it.id, it.name, it.bio, it.company, it.thumbnailUrl, it.twitter, it.github, it.website))
+        }
     }
 
-    private fun fillSessions(): Observable<List<Session>> {
+    private fun fillSessions(syncResult: SyncResult) {
         Timber.i("Update sessions informations")
 
-        return conferenceApiService.loadSessions()
+        syncResult.sessions.forEach {
+
+            val session = Session(it.id, it.title, it.description, it.mainTag, it.start, it.end, it.photoUrl, it.room)
+
+            it.speakers?.forEach { speakerId ->
+                val sessionSpeaker = SessionSpeaker(session.id!!, speakerId)
+                sessionDao.addOrUpdate(sessionSpeaker)
+            }
+
+            it.tags?.forEach { tagId ->
+                val sessionTag = SessionTag(session.id!!, tagId)
+                sessionDao.addOrUpdate(sessionTag)
+            }
+
+            sessionDao.addOrUpdate(session)
+        }
     }
 
-    private fun fillVideos(): Observable<List<Video>> {
+    private fun fillVideos(syncResult: SyncResult) {
         Timber.i("Update videos informations")
 
-        return conferenceApiService.loadVideos()
+        syncResult.videos.forEach {
+            videoDao.addOrUpdate(Video(it.id, it.title, it.description, it.thumbnailUrl, it.topic, it.speakers))
+        }
+
     }
 
-    data class SyncResult(val blocks: List<Block>, val rooms: List<Room>, val tags: List<Tag>, val speakers: List<Speaker>, val sessions: List<Session>, val videos: List<Video>)
+    data class SyncResult(val blocks: List<BlockResponse>, val rooms: List<RoomResponse>, val tags: List<TagResponse>, val speakers: List<SpeakerResponse>, val sessions: List<SessionResponse>, val videos: List<VideoResponse>)
 
 }

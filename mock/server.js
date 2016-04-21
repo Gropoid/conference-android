@@ -20,19 +20,19 @@ app.get('/', function(req, res){
     manifest = {
         format: "conf-json-v1",
         data_files: [
-                "/blocks",
-                "/rooms",
-                "/speakers",
-                "/tags",
-                "/sessions",
-                "/videos"
+                "/blocks.json",
+                "/rooms.json",
+                "/speakers.json",
+                "/tags.json",
+                "/sessions.json",
+                "/videos.json"
             ]
     }
 
     returnJson(Promise.resolve(manifest), res);
 });
 
-app.get('/blocks', function(req, res){
+app.get('/blocks.json', function(req, res){
     readFile('data/blocks.json').then(function(data){
         returnJson(data, res);
     }).catch(function(error){
@@ -40,7 +40,7 @@ app.get('/blocks', function(req, res){
     });
 });
 
-app.get('/rooms', function(req, res){
+app.get('/rooms.json', function(req, res){
     readFile('data/rooms.json').then(function(data){
             returnJson(data, res);
         }).catch(function(error){
@@ -48,7 +48,7 @@ app.get('/rooms', function(req, res){
         });
 });
 
-app.get('/speakers', function(req, res){
+app.get('/speakers.json', function(req, res){
     readFile('data/speakers.json').then(function(data){
             returnJson(data, res);
         }).catch(function(error){
@@ -56,7 +56,7 @@ app.get('/speakers', function(req, res){
         });
 });
 
-app.get('/tags', function(req, res){
+app.get('/tags.json', function(req, res){
     readFile('data/tags.json').then(function(data){
             returnJson(data, res);
         }).catch(function(error){
@@ -64,7 +64,7 @@ app.get('/tags', function(req, res){
         });
 });
 
-app.get('/sessions', function(req, res){
+app.get('/sessions.json', function(req, res){
     readFile('data/sessions.json').then(function(data){
             returnJson(data, res);
         }).catch(function(error){
@@ -72,7 +72,7 @@ app.get('/sessions', function(req, res){
         });
 });
 
-app.get('/videos', function(req, res){
+app.get('/videos.json', function(req, res){
     readFile('data/videos.json').then(function(data){
             returnJson(data, res);
         }).catch(function(error){

@@ -19,7 +19,7 @@ object VideoMapper {
         val description = it.getString(COL_DESCRIPTION)
         val thumbnailUrl = it.getString(COL_THUMBNAIL)
         val topic = it.getString(COL_TOPIC)
-        val speakers = it.getString(COL_TOPIC)
+        val speakers = it.getString(COL_SPEAKERS)
 
         Video(id, title, description, thumbnailUrl, topic, speakers)
     }
