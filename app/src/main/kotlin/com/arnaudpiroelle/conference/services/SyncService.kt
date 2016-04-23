@@ -49,20 +49,23 @@ class SyncService : IntentService("SyncService") {
                     SyncResult(blocks, rooms, tags, speakers, sessions, videos)
                 })
                 .subscribeOn(Schedulers.io())
-                .subscribe {
+                .subscribe (
+                        {
+                            val newTransaction = db.newTransaction()
 
-                    val newTransaction = db.newTransaction()
+                            fillBlocks(it)
+                            fillRooms(it)
+                            fillSpeakers(it)
+                            fillTags(it)
+                            fillVideos(it)
+                            fillSessions(it)
 
-                    fillBlocks(it)
-                    fillRooms(it)
-                    fillSpeakers(it)
-                    fillTags(it)
-                    fillVideos(it)
-                    fillSessions(it)
-
-                    newTransaction.markSuccessful()
-                    newTransaction.end()
-                }
+                            newTransaction.markSuccessful()
+                            newTransaction.end()
+                        },
+                        {
+                            throwable -> Timber.e("Error on sync data", throwable)
+                        })
 
     }
 
