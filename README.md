@@ -1,5 +1,7 @@
 #  Conferences Application 
-[![Circle CI](https://circleci.com/gh/ArnaudPiroelle/conference-android/tree/master.svg?style=svg)](https://circleci.com/gh/ArnaudPiroelle/conference-android/tree/master)  [<img src="https://dply.me/dmatzv/button/small" alt="Download to device">](https://dply.me/dmatzv#install)
+[![Circle CI](https://circleci.com/gh/ArnaudPiroelle/conference-android/tree/master.svg?style=shield)](https://circleci.com/gh/ArnaudPiroelle/conference-android/tree/master) 
+[![Deploy it](https://dply.me/dmatzv/button/small)](https://dply.me/dmatzv#install) 
+[![Stories in Ready](https://badge.waffle.io/ArnaudPiroelle/conference-android.svg?label=ready&title=Ready)](http://waffle.io/ArnaudPiroelle/conference-android) 
 
 ## Features
 
@@ -23,7 +25,7 @@ This project uses some modern Android libraries.
 * [Stetho](http://facebook.github.io/stetho/) - Facebook
 
 ## License
-```
+````
 Copyright 2015 Arnaud Piroelle.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,4 +39,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.`
-```
+````
