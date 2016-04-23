@@ -98,7 +98,9 @@ class SpeakerDetailsActivity : BaseActivity(), SpeakerDetailsContract.View {
         speaker_description.text = speaker.bio
 
         if (!TextUtils.isEmpty(speaker.thumbnailUrl)) {
-            Picasso.with(this).load(speaker.thumbnailUrl).into(speaker_image)
+            Picasso.with(this).load(speaker.thumbnailUrl).placeholder(R.drawable.placeholder_speaker).error(R.drawable.placeholder_speaker).into(speaker_image)
+        } else {
+            Picasso.with(this).load(R.drawable.placeholder_speaker).into(speaker_image)
         }
     }
 
