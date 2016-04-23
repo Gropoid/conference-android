@@ -77,7 +77,8 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:id="@+id/session_description"
             style="@style/Body1Text"
             android:layout_width="match_parent"
@@ -91,8 +92,8 @@
             android:id="@+id/session_tags_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="72dp"
             android:layout_marginStart="72dp"
             android:fadingEdgeLength="16dp"
@@ -112,6 +113,7 @@
             android:id="@+id/session_speakers_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:orientation="vertical">
 
@@ -124,7 +126,6 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center_vertical"
-                android:layout_marginTop="8dp"
                 android:text="@string/session_speakers"
                 android:textAppearance="@style/TextAppearance.Body2"
                 android:textColor="@color/body_text_2"/>

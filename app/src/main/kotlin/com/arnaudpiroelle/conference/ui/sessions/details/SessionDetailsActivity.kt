@@ -3,6 +3,8 @@ package com.arnaudpiroelle.conference.ui.sessions.details
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.TextView
@@ -54,6 +56,18 @@ class SessionDetailsActivity : BaseActivity(), SessionDetailsContract.View {
         super.onStop()
 
         userActionsListener.unsubscribe()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        super.onCreateOptionsMenu(menu)
+
+        menuInflater.inflate(R.menu.menu_session_details, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 
     override fun showSession(session: Session) {
