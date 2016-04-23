@@ -1,6 +1,7 @@
 package com.arnaudpiroelle.conference.ui.explore.viewholder
 
 import android.content.Context
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -43,7 +44,11 @@ class TagViewHolder(val context: Context, parent: ViewGroup?, val userActionsLis
                 userActionsListener.openSessionDetails(session)
             }
 
-            Picasso.with(itemView.context).load(session.photoUrl).into(sessionView.session_thumbnail)
+            if(!TextUtils.isEmpty(session.photoUrl)){
+                Picasso.with(itemView.context).load(session.photoUrl).into(sessionView.session_thumbnail)
+            } else {
+                Picasso.with(itemView.context).load(R.drawable.placeholder_session).into(sessionView.session_thumbnail)
+            }
         }
 
     }

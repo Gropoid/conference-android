@@ -17,6 +17,7 @@ import com.arnaudpiroelle.conference.model.Tag
 import com.arnaudpiroelle.conference.ui.core.BaseActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_session_details.*
+import kotlinx.android.synthetic.main.item_view_session.view.*
 import kotlinx.android.synthetic.main.item_view_session_speaker.view.*
 import javax.inject.Inject
 
@@ -58,6 +59,12 @@ class SessionDetailsActivity : BaseActivity(), SessionDetailsContract.View {
         session_description.text = session.description
 
         Picasso.with(this).load(session.photoUrl).into(session_image)
+
+        if(!TextUtils.isEmpty(session.photoUrl)){
+            Picasso.with(this).load(session.photoUrl).into(session_image)
+        } else {
+            Picasso.with(this).load(R.drawable.placeholder_session).into(session_image)
+        }
     }
 
     override fun cleanTags() {

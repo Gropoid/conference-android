@@ -28,7 +28,8 @@
             android:id="@+id/session_thumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_session"/>
 
         <ImageView
             android:id="@+id/indicator_in_schedule"
