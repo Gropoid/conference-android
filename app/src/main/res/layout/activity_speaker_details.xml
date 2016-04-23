@@ -12,7 +12,7 @@
         android:id="@+id/speaker_header"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="?attr/colorPrimaryDark"
+        android:background="?attr/colorPrimary"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical">
@@ -93,21 +93,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <TextView
-            style="@style/AppTheme.Speaker.Details.Header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/speaker_description_header"/>
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/speaker_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginLeft="16sp"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="16dp"
             tools:text="Arnaud is an Android Developer and Craftman"/>
 
         <LinearLayout
@@ -115,13 +109,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/speaker_sessions_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center_vertical"
