@@ -9,4 +9,7 @@
 
     <color name="more_button_text">#ff006574</color>
     <color name="more_button_background">#ffcfd8dc</color>
+
+    <!-- Session Details-->
+    <color name="session_details_tag_text_color">#ff008094</color>
 </resources>

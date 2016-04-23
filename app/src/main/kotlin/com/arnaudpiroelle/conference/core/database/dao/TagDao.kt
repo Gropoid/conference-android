@@ -2,12 +2,15 @@ package com.arnaudpiroelle.conference.core.database.dao
 
 import android.database.sqlite.SQLiteDatabase.CONFLICT_REPLACE
 import com.arnaudpiroelle.conference.core.database.mapper.SessionMapper
+import com.arnaudpiroelle.conference.core.database.mapper.SpeakerMapper
 import com.arnaudpiroelle.conference.core.database.mapper.TagMapper
 import com.arnaudpiroelle.conference.core.database.mapper.TagMapper.toContentValues
 import com.arnaudpiroelle.conference.core.database.utils.getString
 import com.arnaudpiroelle.conference.model.Session
+import com.arnaudpiroelle.conference.model.Speaker
 import com.arnaudpiroelle.conference.model.Tag
 import com.arnaudpiroelle.conference.model.Tag.Companion.TABLE_NAME
+import com.arnaudpiroelle.conference.model.rel.SessionSpeaker
 import com.arnaudpiroelle.conference.model.rel.SessionTag
 import com.squareup.sqlbrite.BriteDatabase
 import rx.Observable
@@ -48,6 +51,14 @@ class TagDao @Inject constructor(val db: BriteDatabase) {
                     })
                     Observable.just(groupBy)
                 }
+    }
+
+    fun getTagsBySessionId(sessionId: String): Observable<List<Tag>> {
+        return db.createQuery(Tag.TABLE_NAME, "SELECT ${Tag.TABLE_NAME}.* FROM ${Tag.TABLE_NAME} " +
+                "INNER JOIN ${SessionTag.TABLE_NAME} " +
+                "ON ${Tag.TABLE_NAME}.${Tag.COL_ID}=${SessionTag.TABLE_NAME}.${SessionTag.COL_TAG} " +
+                "WHERE ${SessionTag.COL_SESSION}=?", sessionId)
+                .mapToList(TagMapper.toTag)
     }
 
 }

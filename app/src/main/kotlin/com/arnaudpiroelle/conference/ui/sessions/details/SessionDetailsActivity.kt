@@ -3,6 +3,9 @@ package com.arnaudpiroelle.conference.ui.sessions.details
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.widget.TextView
 import com.arnaudpiroelle.conference.ConferenceApplication.Companion.GRAPH
 import com.arnaudpiroelle.conference.R
 import com.arnaudpiroelle.conference.core.database.dao.SessionDao
@@ -17,7 +20,6 @@ import com.arnaudpiroelle.conference.model.Tag
 import com.arnaudpiroelle.conference.ui.core.BaseActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_session_details.*
-import kotlinx.android.synthetic.main.item_view_session.view.*
 import kotlinx.android.synthetic.main.item_view_session_speaker.view.*
 import javax.inject.Inject
 
@@ -60,7 +62,7 @@ class SessionDetailsActivity : BaseActivity(), SessionDetailsContract.View {
 
         Picasso.with(this).load(session.photoUrl).into(session_image)
 
-        if(!TextUtils.isEmpty(session.photoUrl)){
+        if (!TextUtils.isEmpty(session.photoUrl)) {
             Picasso.with(this).load(session.photoUrl).into(session_image)
         } else {
             Picasso.with(this).load(R.drawable.placeholder_session).into(session_image)
@@ -68,18 +70,31 @@ class SessionDetailsActivity : BaseActivity(), SessionDetailsContract.View {
     }
 
     override fun cleanTags() {
+        session_tags_container.visibility = GONE
         session_tags.removeAllViews()
     }
 
     override fun addTag(tag: Tag) {
+        session_tags_container.visibility = VISIBLE
 
+        val tagView = LayoutInflater.from(this).inflate(R.layout.item_view_session_tag, session_speakers, false) as TextView
+        tagView.text = tag.name
+
+        tagView.setOnClickListener {
+            startActivity(Intents.createSessionListing(this, tag))
+        }
+
+        session_tags.addView(tagView)
     }
 
     override fun cleanSpeakers() {
+        session_speakers_container.visibility = GONE
         session_speakers.removeAllViews()
     }
 
     override fun addSpeaker(speaker: Speaker) {
+        session_speakers_container.visibility = VISIBLE
+
         val speakerView = LayoutInflater.from(this).inflate(R.layout.item_view_session_speaker, session_speakers, false)
 
         speakerView.speaker_name.text = speaker.name

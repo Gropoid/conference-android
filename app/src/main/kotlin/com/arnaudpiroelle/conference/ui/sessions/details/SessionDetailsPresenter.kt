@@ -16,7 +16,7 @@ class SessionDetailsPresenter(val view: SessionDetailsContract.View, val session
     private var subscription: Subscription = Subscriptions.empty()
 
     override fun subscribe(sessionId: String) {
-        subscription = Observable.combineLatest(sessionDao.getSession(sessionId), speakerDao.getSpeakersBySessionId(sessionId), tagDao.getTags(), { session, speakers, tags ->
+        subscription = Observable.combineLatest(sessionDao.getSession(sessionId), speakerDao.getSpeakersBySessionId(sessionId), tagDao.getTagsBySessionId(sessionId), { session, speakers, tags ->
             val sessionSpeakers = speakers
             val sessionTags = tags
 
