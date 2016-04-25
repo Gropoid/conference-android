@@ -77,7 +77,7 @@ class SessionDetailsActivity : BaseActivity(), SessionDetailsContract.View {
         Picasso.with(this).load(session.photoUrl).into(session_image)
 
         if (!TextUtils.isEmpty(session.photoUrl)) {
-            Picasso.with(this).load(session.photoUrl).into(session_image)
+            Picasso.with(this).load(session.photoUrl).placeholder(R.drawable.placeholder_session).error(R.drawable.placeholder_session).into(session_image)
         } else {
             Picasso.with(this).load(R.drawable.placeholder_session).into(session_image)
         }

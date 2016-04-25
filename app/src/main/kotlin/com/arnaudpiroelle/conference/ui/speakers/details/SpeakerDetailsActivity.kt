@@ -18,7 +18,6 @@ import com.arnaudpiroelle.conference.model.Speaker
 import com.arnaudpiroelle.conference.ui.core.BaseActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_speaker_details.*
-import kotlinx.android.synthetic.main.item_view_session.*
 import kotlinx.android.synthetic.main.item_view_session.view.*
 import javax.inject.Inject
 
@@ -135,8 +134,10 @@ class SpeakerDetailsActivity : BaseActivity(), SpeakerDetailsContract.View {
         sessionView.session_title.text = session.title
         sessionView.session_description.text = session.description
 
-        if(!TextUtils.isEmpty(session.photoUrl)){
-            Picasso.with(this).load(session.photoUrl).into(sessionView.session_thumbnail)
+        if (!TextUtils.isEmpty(session.photoUrl)) {
+            Picasso.with(this).load(session.photoUrl).placeholder(R.drawable.placeholder_session).error(R.drawable.placeholder_session).into(sessionView.session_thumbnail)
+        } else {
+            Picasso.with(this).load(R.drawable.placeholder_session).into(sessionView.session_thumbnail)
         }
 
         speaker_sessions.addView(sessionView)

@@ -45,7 +45,10 @@ class TagViewHolder(val context: Context, parent: ViewGroup?, val userActionsLis
             }
 
             if(!TextUtils.isEmpty(session.photoUrl)){
-                Picasso.with(itemView.context).load(session.photoUrl).into(sessionView.session_thumbnail)
+                Picasso.with(itemView.context).load(session.photoUrl)
+                        .placeholder(R.drawable.placeholder_session)
+                        .error(R.drawable.placeholder_session)
+                        .into(sessionView.session_thumbnail)
             } else {
                 Picasso.with(itemView.context).load(R.drawable.placeholder_session).into(sessionView.session_thumbnail)
             }

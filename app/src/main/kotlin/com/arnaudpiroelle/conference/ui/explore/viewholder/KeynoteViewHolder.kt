@@ -1,6 +1,7 @@
 package com.arnaudpiroelle.conference.ui.explore.viewholder
 
 import android.content.Context
+import android.text.TextUtils
 import android.view.ViewGroup
 import com.arnaudpiroelle.conference.R
 import com.arnaudpiroelle.conference.core.utils.TimeUtils
@@ -17,7 +18,18 @@ class KeynoteViewHolder(val context: Context, parent: ViewGroup?, val userAction
         itemView.title.text = keynote.title
         itemView.description.text = getPeriode(keynote)
 
-        Picasso.with(itemView.context).load(keynote.photoUrl).into(itemView.image)
+
+        if (!TextUtils.isEmpty(keynote.photoUrl)) {
+            Picasso.with(itemView.context)
+                    .load(keynote.photoUrl)
+                    .placeholder(R.drawable.placeholder_session)
+                    .error(R.drawable.placeholder_session)
+                    .into(itemView.image)
+        } else {
+            Picasso.with(itemView.context)
+                    .load(R.drawable.placeholder_session)
+                    .into(itemView.image)
+        }
 
         itemView.keynote_container.setOnClickListener {
             userActionsListener.openSessionDetails(keynote)
