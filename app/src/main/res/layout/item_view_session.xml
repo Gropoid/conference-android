@@ -50,22 +50,33 @@
 
         <TextView
             android:id="@+id/session_title"
+            style="@style/TextAppearance.SessionTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="3"
-            tools:text="Title"
-            style="@style/TextAppearance.SessionTitle"/>
+            android:maxLines="2"
+            tools:text="Title"/>
 
         <TextView
             android:id="@+id/session_description"
+            style="@style/TextAppearance.Body1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="2"
-            tools:text="Description"
-            style="@style/TextAppearance.Body1"/>
+            tools:text="Description"/>
+
+        <TextView
+            android:id="@+id/session_dates"
+            style="@style/TextAppearance.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textSize="12sp"
+            android:text="Nov 4 - 1pm to 2pm"/>
 
     </LinearLayout>
 

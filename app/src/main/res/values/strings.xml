@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="http://schemas.android.com/tools">
     <string name="app_name">Conference</string>
 
     <string name="nav_my_schedule">My schedule</string>
@@ -19,4 +19,8 @@
     <string name="session_speakers">Speakers</string>
     <string name="speaker_sessions">Sessions</string>
     <string name="menu_share">Share</string>
+
+    <string name="session_finished">Ended</string>
+    <string name="session_subtitle"><xliff:g id="time">%1$s</xliff:g> in <xliff:g id="room">%2$s</xliff:g></string>
+    <string name="unknown_room">(Unspecified Room)</string>
 </resources>

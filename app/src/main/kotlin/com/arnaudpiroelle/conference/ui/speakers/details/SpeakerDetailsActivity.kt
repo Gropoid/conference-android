@@ -11,6 +11,7 @@ import com.arnaudpiroelle.conference.ConferenceApplication.Companion.GRAPH
 import com.arnaudpiroelle.conference.R
 import com.arnaudpiroelle.conference.core.database.dao.SessionDao
 import com.arnaudpiroelle.conference.core.database.dao.SpeakerDao
+import com.arnaudpiroelle.conference.core.utils.Dates
 import com.arnaudpiroelle.conference.core.utils.Intents
 import com.arnaudpiroelle.conference.core.utils.ProtocolConstants
 import com.arnaudpiroelle.conference.model.Session
@@ -133,11 +134,16 @@ class SpeakerDetailsActivity : BaseActivity(), SpeakerDetailsContract.View {
 
         sessionView.session_title.text = session.title
         sessionView.session_description.text = session.description
+        sessionView.session_dates.text = Dates.formatSessionPeriod(this, session.start!!, session.end!!)
 
         if (!TextUtils.isEmpty(session.photoUrl)) {
             Picasso.with(this).load(session.photoUrl).placeholder(R.drawable.placeholder_session).error(R.drawable.placeholder_session).into(sessionView.session_thumbnail)
         } else {
             Picasso.with(this).load(R.drawable.placeholder_session).into(sessionView.session_thumbnail)
+        }
+
+        sessionView.setOnClickListener {
+            startActivity(Intents.createSessionDetails(this, session))
         }
 
         speaker_sessions.addView(sessionView)

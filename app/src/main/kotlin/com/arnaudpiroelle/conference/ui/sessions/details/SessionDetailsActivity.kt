@@ -13,6 +13,7 @@ import com.arnaudpiroelle.conference.R
 import com.arnaudpiroelle.conference.core.database.dao.SessionDao
 import com.arnaudpiroelle.conference.core.database.dao.SpeakerDao
 import com.arnaudpiroelle.conference.core.database.dao.TagDao
+import com.arnaudpiroelle.conference.core.utils.Dates
 import com.arnaudpiroelle.conference.core.utils.Intents
 import com.arnaudpiroelle.conference.core.utils.Intents.createSpeakerDetails
 import com.arnaudpiroelle.conference.core.utils.ProtocolConstants
@@ -73,6 +74,7 @@ class SessionDetailsActivity : BaseActivity(), SessionDetailsContract.View {
     override fun showSession(session: Session) {
         session_title.text = session.title
         session_description.text = session.description
+        session_subtitle.text = Dates.formatSessionPeriod(this, session.start!!, session.end!!)
 
         Picasso.with(this).load(session.photoUrl).into(session_image)
 

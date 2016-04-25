@@ -7,6 +7,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import com.arnaudpiroelle.conference.R
+import com.arnaudpiroelle.conference.core.utils.Dates
 import com.arnaudpiroelle.conference.model.Session
 import com.arnaudpiroelle.conference.ui.explore.ExploreContract
 import com.arnaudpiroelle.conference.ui.explore.model.TagWithSessions
@@ -44,7 +45,9 @@ class TagViewHolder(val context: Context, parent: ViewGroup?, val userActionsLis
                 userActionsListener.openSessionDetails(session)
             }
 
-            if(!TextUtils.isEmpty(session.photoUrl)){
+            sessionView.session_dates.text = Dates.formatSessionPeriod(context, session.start!!, session.end!!)
+
+            if (!TextUtils.isEmpty(session.photoUrl)) {
                 Picasso.with(itemView.context).load(session.photoUrl)
                         .placeholder(R.drawable.placeholder_session)
                         .error(R.drawable.placeholder_session)
